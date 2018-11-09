@@ -620,10 +620,17 @@ public class CloudEndpointsApiManager : MonoBehaviour {
 	public void startExperienceEdit2()
 	{
 		StartCoroutine("experienceEdit");
+		StartCoroutine("deleteAndUploadExperienceFiles");
+	}
+
+	private IEnumerator deleteAndUploadExperienceFiles()
+	{
+		fsm.DeleteExperience(code);
+		yield return new WaitForSeconds(2);
 		fsm.uploadExperienceFiles();
 	}
 
-	public IEnumerator experienceEdit() 
+	private IEnumerator experienceEdit() 
 	{
 		editExperienceClass editExperience = new editExperienceClass();
 		editExperience.title = sm.title.text;
@@ -722,6 +729,7 @@ public void startGetProfileInfo()
 
 	public IEnumerator getOwnedCodes() 
 	{
+		int numExperiences = 0;
 		using (UnityWebRequest getOwnedCodesRequest = UnityWebRequest.Get(getOwnedCodesUrl))
 		{
 			//set content type
@@ -737,10 +745,20 @@ public void startGetProfileInfo()
 			string jsonString = Encoding.UTF8.GetString(results);
 			Debug.Log(jsonString);
 			oec = JsonUtility.FromJson<OwnedExperiencesClass>(jsonString);
-			Debug.Log(oec.codes[0]);
+
+			//count how many experiences the user has 
+			foreach(string code in oec.codes)
+			{
+				if (code == null)
+					break;
+
+				numExperiences++;
+			}
+
+			Debug.Log("Number of codes: "+numExperiences);
 		}
 
-		for (int i = 0; i < oec.codes.Length; i++)
+		for (int i = 0; i < numExperiences; i++)
 		{
 			switch(i)
 			{
@@ -806,7 +824,7 @@ public void startGetProfileInfo()
 					break;
 				case 10:
 					ref11.SetActive(true);
-					title1.text=oec.titles[i];
+					title11.text=oec.titles[i];
 					date11.text=oec.dates[i];
 					code11.text=oec.codes[i];
 					break;
@@ -1047,6 +1065,7 @@ public void startGetProfileInfo()
 			}
 		}
 	}
+	
 
 	public void deactivateLibraryStubs()
 	{

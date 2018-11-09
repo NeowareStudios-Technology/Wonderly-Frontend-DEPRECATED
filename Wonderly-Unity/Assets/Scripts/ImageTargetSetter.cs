@@ -39,7 +39,8 @@ public class ImageTargetSetter : MonoBehaviour {
                             //GameObject itm.target1 = new GameObject(obj.Key);
                             //target1 = itm.target1;
                           
-                           
+                                if (itm.target1.GetComponent<DynamicImageTagetBehaviour>() == null)
+                                {
                                 itm.target1.SetActive(true);
                                 itm.target1.tag = "target1";
                                 var behaviour1 = itm.target1.AddComponent<DynamicImageTagetBehaviour>();
@@ -56,13 +57,15 @@ public class ImageTargetSetter : MonoBehaviour {
                                     pathManager.targetStatus[0] = "created";
                                 fileCheck[0] = 1;
                                 count++;
+                                }
                         
                             break;
                         case "targetPhoto2":
                             //GameObject imageTarget2= new GameObject(obj.Key);
                             //target2 = imageTarget2;
                        
-                            
+                                if (itm.target2.GetComponent<DynamicImageTagetBehaviour>() == null)
+                                {
                                 itm.target2.SetActive(true);
                                 itm.target2.tag = "target2";
                                 var behaviour2 = itm.target2.AddComponent<DynamicImageTagetBehaviour>();
@@ -79,13 +82,15 @@ public class ImageTargetSetter : MonoBehaviour {
                                     pathManager.targetStatus[1] = "created";
                                 fileCheck[1] = 1;
                                 count++;
+                                }
                       
                             break;
                         case "targetPhoto3":
                             //GameObject imageTarget3 = new GameObject(obj.Key);
                             //target3 = imageTarget3;
                             
-                         
+                                if (itm.target3.GetComponent<DynamicImageTagetBehaviour>() == null)
+                                {
                                 itm.target3.SetActive(true);
                                 itm.target3.tag = "target3";
                                 var behaviour3 = itm.target3.AddComponent<DynamicImageTagetBehaviour>();
@@ -102,13 +107,15 @@ public class ImageTargetSetter : MonoBehaviour {
                                     pathManager.targetStatus[2] = "created";
                                 fileCheck[2] = 1;
                                 count++;
+                                }
                           
                             break;
                         case "targetPhoto4":
                             //GameObject imageTarget4 = new GameObject(obj.Key);
                             //target4 = imageTarget4;
                      
-                          
+                                if (itm.target4.GetComponent<DynamicImageTagetBehaviour>() == null)
+                                {
                                 itm.target4.SetActive(true);
                                 itm.target4.tag = "target4";
                                 var behaviour4 = itm.target4.AddComponent<DynamicImageTagetBehaviour>();
@@ -125,13 +132,15 @@ public class ImageTargetSetter : MonoBehaviour {
                                     pathManager.targetStatus[3] = "created";
                                 fileCheck[3] = 1;
                                 count++;
+                                }
                          
                             break;
                         case "targetPhoto5":
                             //GameObject itm.target5 = new GameObject(obj.Key);
                             //target5 = itm.target5;
                    
-                         
+                                if (itm.target5.GetComponent<DynamicImageTagetBehaviour>() == null)
+                                {
                                 itm.target5.SetActive(true);
                                 itm.target5.tag = "target5";
                                 var behaviour5 = itm.target5.AddComponent<DynamicImageTagetBehaviour>();
@@ -148,6 +157,7 @@ public class ImageTargetSetter : MonoBehaviour {
                                     pathManager.targetStatus[4] = "created";
                                 fileCheck[4] = 1;
                                 count++;
+                                }
                           
                             break;
                     }

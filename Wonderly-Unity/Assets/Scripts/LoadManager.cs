@@ -46,7 +46,7 @@ public class LoadManager : MonoBehaviour {
 
 	public int previewIndex;
 
-	public List<PolyAsset> allAssets = new List<PolyAsset>();
+	public PolyAsset[] allAssets = new PolyAsset[5];
 
 
 	//keeps track of first available index for a model
@@ -55,8 +55,13 @@ public class LoadManager : MonoBehaviour {
 	//keeps track of first available index for a model
 	public int[] videoIndices = new int[5];
 
+	public int globalModelArrayIndex;
+	public int globalModelIndexTracker;
+	
 
 
+
+	//Main function in this file that calls other helper functions 
 	public void LoadFile() {
 
 		previewIndex = 0;
@@ -73,6 +78,11 @@ public class LoadManager : MonoBehaviour {
 			string jsonString = File.ReadAllText(savePath);
 			Debug.Log(jsonString);
 			scd = SaveClassDeclaration.CreateFromJSON(jsonString);
+		}
+		else 
+		{
+			Debug.Log("no save file");
+			return;
 		}
 
 		Debug.Log(scd.title);
@@ -106,17 +116,32 @@ public class LoadManager : MonoBehaviour {
 
 		//copy the target images from the save directory to the working directory
 		if (File.Exists(savePath1))
+		{
 			System.IO.File.Copy(savePath1, workingPath1, true);
+			fm.targetCount++;
+		}
 		if (File.Exists(savePath2))
+		{
 			System.IO.File.Copy(savePath2, workingPath2, true);
+			fm.targetCount++;
+		}
 		if (File.Exists(savePath3))
+		{
 			System.IO.File.Copy(savePath3, workingPath3, true);
+			fm.targetCount++;
+		}
 		if (File.Exists(savePath4))
+		{
 			System.IO.File.Copy(savePath4, workingPath4, true);
+			fm.targetCount++;
+		}
 		if (File.Exists(savePath5))
+		{
 			System.IO.File.Copy(savePath5, workingPath5, true);
+			fm.targetCount++;
+		}
 
-
+				
 					if(File.Exists(workingPath1))
 					{
 						//creates new target game object
@@ -215,6 +240,7 @@ public class LoadManager : MonoBehaviour {
 						//set the target status array to reflect that this target has been created
 	
 					}
+					
 
 		//set preivew images
 		if (File.Exists(workingPath1))
@@ -229,6 +255,7 @@ public class LoadManager : MonoBehaviour {
 			preview5.sprite = IMG2Sprite.LoadNewSprite(workingPath5);
 		//call function to imported all loaded AR objects (pics/videos/models)
 		ImportLoadedItems();
+		targetSetter.SetActive(true);
 	}
 
 	//imports all AR objects from save directory
@@ -243,23 +270,23 @@ public class LoadManager : MonoBehaviour {
 				{
 					case 0:
 						fm.targetStatus[0] = "model";
-						ImportModel(scd.mod1);
+						ImportModel(scd.mod1,i);
 						break;
 					case 1:
 						fm.targetStatus[1] = "model";
-						ImportModel(scd.mod2);
+						ImportModel(scd.mod2,i);
 						break;
 					case 2:
 						fm.targetStatus[2] = "model";
-						ImportModel(scd.mod3);
+						ImportModel(scd.mod3,i);
 						break;
 					case 3:
 						fm.targetStatus[3] = "model";
-						ImportModel(scd.mod4);
+						ImportModel(scd.mod4,i);
 						break;
 					case 4:
 						fm.targetStatus[4] = "model";
-						ImportModel(scd.mod5);
+						ImportModel(scd.mod5,i);
 						break;
 				}
 			}
@@ -306,12 +333,19 @@ public class LoadManager : MonoBehaviour {
 				else if (scd.targetStatus[i] == "image")
 			{
 				StartCoroutine(setImage(i));
+				StartCoroutine(setLoadedImageThumb(i));
 			}
 		}
 	}
 
+
+
+
+
+	//helper function to set image to AR target
 	public IEnumerator setImage(int index)
 	{
+		//based on which target (1-5) to be set
 		switch(index)
 				{
 					case 0:
@@ -357,11 +391,13 @@ public class LoadManager : MonoBehaviour {
 				}
 	}
 
-	private void ImportModel(string modelId) {
+	//set of 3 helper functions to import model
+	private void ImportModel(string modelId, int whichIndex) {
 		string assetString = "assets/" + modelId;
 		PolyApi.GetAsset(modelId, GetAssetCallback);
+		//used because callback has preset number of parameters
+		globalModelArrayIndex = whichIndex;
 	}
-
 	void GetAssetCallback(PolyStatusOr<PolyAsset> result) {
   	if (!result.Ok) 
 		{
@@ -370,7 +406,7 @@ public class LoadManager : MonoBehaviour {
   	}
 		List<PolyAsset> assets = new List<PolyAsset>();
 		assets.Add(result.Value);
-		allAssets.Add(result.Value);
+		allAssets[globalModelArrayIndex] = result.Value;
 		tom.attribs.Add(PolyApi.GenerateAttributions(includeStatic: true, runtimeAssets: assets));
 
 		PolyImportOptions options = PolyImportOptions.Default();
@@ -382,7 +418,6 @@ public class LoadManager : MonoBehaviour {
 		options.recenter = true;
 		PolyApi.Import(result.Value, options, GetModelCallback);
 	}
-
 	void GetModelCallback(PolyAsset asset, PolyStatusOr<PolyImportResult> result) {
   if (!result.Ok) {
     Debug.Log("There was an error importing the loaded model");
@@ -447,34 +482,101 @@ public class LoadManager : MonoBehaviour {
 					break;
 			}
 			modelIndices[j] = 0;
+			setLoadedModelThumb(j);
 			return;
 		}
 	}
 	}
-/* 
-	public void setLoadedImageThumb(int whichThumb)
+
+
+	//helper function to load image to corrent thumbnail (called by loadFile)
+	private IEnumerator setLoadedImageThumb(int whichIndex)
 	{
-		using (WWW previewRequest = new WWW(imagePreviewUrl[index]))
+		switch (whichIndex)
 		{
-			yield return previewRequest;
-			switch(whichThumb)
-			{
-				case 1:
-					thumb1.sprite = Sprite.Create(previewRequest.texture, new Rect(0, 0, previewRequest.texture.width, previewRequest.texture.height), new Vector2(0, 0));
-					break;
-			}
+			case 0:
+				using (WWW imageThumbRequest1 = new WWW(scd.imageUrl[0]))
+				{
+					yield return imageThumbRequest1;
+					thumb1.sprite = Sprite.Create(imageThumbRequest1.texture, new Rect(0, 0, imageThumbRequest1.texture.width, imageThumbRequest1.texture.height), new Vector2(0, 0));
+				}
+				break;
+			case 1:
+				using (WWW imageThumbRequest2 = new WWW(scd.imageUrl[1]))
+				{
+					yield return imageThumbRequest2;
+					thumb2.sprite = Sprite.Create(imageThumbRequest2.texture, new Rect(0, 0, imageThumbRequest2.texture.width, imageThumbRequest2.texture.height), new Vector2(0, 0));
+				}
+				break;
+			case 2:
+				using (WWW imageThumbRequest3 = new WWW(scd.imageUrl[2]))
+				{
+					yield return imageThumbRequest3;
+					thumb3.GetComponent<Renderer>().material.mainTexture = imageThumbRequest3.texture;
+					thumb3.sprite = Sprite.Create(imageThumbRequest3.texture, new Rect(0, 0, imageThumbRequest3.texture.width, imageThumbRequest3.texture.height), new Vector2(0, 0));
+				}
+				break;
+			case 3:
+				using (WWW imageThumbRequest4 = new WWW(scd.imageUrl[3]))
+				{
+					yield return imageThumbRequest4;
+					thumb4.sprite = Sprite.Create(imageThumbRequest4.texture, new Rect(0, 0, imageThumbRequest4.texture.width, imageThumbRequest4.texture.height), new Vector2(0, 0));
+				}
+				break;
+			case 4:
+				using (WWW imageThumbRequest5 = new WWW(scd.imageUrl[4]))
+				{
+					yield return imageThumbRequest5;
+					thumb5.sprite = Sprite.Create(imageThumbRequest5.texture, new Rect(0, 0, imageThumbRequest5.texture.width, imageThumbRequest5.texture.height), new Vector2(0, 0));
+				}
+				break;
 		}
 	}
-	*/
-	public void setLoadedVideoThumb()
+
+	private void setLoadedModelThumb(int whichIndex)
 	{
-		
+		Debug.Log("!!!!!!starting to download thumbnail");
+		Debug.Log(whichIndex);
+		Debug.Log(allAssets[whichIndex]);
+		globalModelIndexTracker = whichIndex;
+		PolyApi.FetchThumbnail(allAssets[whichIndex], MyCallback);
 	}
-	public void setLoadedModelThumb()
+
+	void MyCallback(PolyAsset asset, PolyStatus status) {
+		if (!status.ok) {
+			Debug.Log("!!!!!!Downloaded experience model thumbnail fetch error");
+			return;
+		}
+		Debug.Log("!!!!!!Downloaded experience model thumbnail success");
+		switch(globalModelIndexTracker)
+		{
+			case 0:
+				thumb1.sprite = Sprite.Create(asset.thumbnailTexture, new Rect(0, 0, asset.thumbnailTexture.width, asset.thumbnailTexture.height), new Vector2(0.5f, 0.5f), 100);
+				break;
+			case 1:
+				thumb2.sprite = Sprite.Create(asset.thumbnailTexture, new Rect(0, 0, asset.thumbnailTexture.width, asset.thumbnailTexture.height), new Vector2(0.5f, 0.5f), 100);
+				break;
+			case 2:
+				thumb3.sprite = Sprite.Create(asset.thumbnailTexture, new Rect(0, 0, asset.thumbnailTexture.width, asset.thumbnailTexture.height), new Vector2(0.5f, 0.5f), 100);
+				break;
+			case 3:
+				thumb4.sprite = Sprite.Create(asset.thumbnailTexture, new Rect(0, 0, asset.thumbnailTexture.width, asset.thumbnailTexture.height), new Vector2(0.5f, 0.5f), 100);
+				break;
+			case 4:
+				thumb5.sprite = Sprite.Create(asset.thumbnailTexture, new Rect(0, 0, asset.thumbnailTexture.width, asset.thumbnailTexture.height), new Vector2(0.5f, 0.5f), 100);
+				break;
+		}
+	}
+
+
+	void setLoadedVideoThumb()
 	{
 		
 	}
 
+
+
+	//the following 2 functions control the UI to preview the target images in the "view" screen
 	public void nextPreview()
 	{
 		if (previewIndex == 4)

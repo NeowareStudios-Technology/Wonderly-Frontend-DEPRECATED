@@ -16,7 +16,7 @@ public class FirebaseManager : MonoBehaviour {
 	public InputField email;
   public InputField Password;
 	public Text newEmail;
-	public Text newPassword;
+	public InputField newPassword;
 	public string token;
 	protected Firebase.Auth.FirebaseAuth auth;
 	public FirebaseApp fbApp;
@@ -143,6 +143,7 @@ public class FirebaseManager : MonoBehaviour {
 			FirebaseAuth auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
 			auth.SignInWithEmailAndPasswordAsync(e, p).ContinueWith(task =>
 			{
+					Debug.Log("Attempted logging in: " + e + " " + p);
 					if (task.IsCanceled)
 					{
 							Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");

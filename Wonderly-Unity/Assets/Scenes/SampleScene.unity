@@ -6125,7 +6125,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00009118824}
+  m_AnchoredPosition: {x: 0, y: 0.000061052175}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.49999997, y: 0.4999999}
 --- !u!114 &165824623
@@ -7245,7 +7245,7 @@ MonoBehaviour:
   email: {fileID: 847618165}
   Password: {fileID: 397881424}
   newEmail: {fileID: 1881752405}
-  newPassword: {fileID: 131097299}
+  newPassword: {fileID: 1484193561}
   token: 
   profileIcon1: {fileID: 76206015}
   profileIcon2: {fileID: 1574610237}
@@ -7374,17 +7374,19 @@ MonoBehaviour:
   unfilled3: {fileID: 1254016031}
   unfilled4: {fileID: 1110294722}
   unfilled5: {fileID: 983720805}
-  thumb1: {fileID: 0}
-  thumb2: {fileID: 0}
-  thumb3: {fileID: 0}
-  thumb4: {fileID: 0}
-  thumb5: {fileID: 0}
+  thumb1: {fileID: 430487737}
+  thumb2: {fileID: 969344222}
+  thumb3: {fileID: 1215770104}
+  thumb4: {fileID: 2027096088}
+  thumb5: {fileID: 380384986}
   titleDisplay: {fileID: 1896061287}
   descriptionDisplay: {fileID: 313730757}
   targetSetter: {fileID: 313334761}
   previewIndex: 0
   modelIndices: 0000000000000000000000000000000000000000
   videoIndices: 0000000000000000000000000000000000000000
+  globalModelArrayIndex: 0
+  globalModelIndexTracker: 0
 --- !u!1 &197419149
 GameObject:
   m_ObjectHideFlags: 0
@@ -13277,6 +13279,28 @@ MonoBehaviour:
       - m_Target: {fileID: 1574610237}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1086585005}
+        m_MethodName: DeleteAllTargetsAndText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1086585011}
+        m_MethodName: clearScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -57658,6 +57682,17 @@ MonoBehaviour:
           m_StringArgument: none
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 313334761}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1349280815
@@ -58518,17 +58553,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Default
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1151461711}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1574610240}

@@ -396,44 +396,37 @@ public class FirebaseStorageManager : MonoBehaviour {
 
 		saveFileRef.GetFileAsync(saveFilePath).ContinueWith(task => {
     if (!task.IsFaulted && !task.IsCanceled) {
-        Debug.Log("Save file downloaded.");
+			Debug.Log("Save file downloaded.");
+			targetRef1.GetFileAsync(targetPath1).ContinueWith(task1 => {
+				if (!task.IsFaulted && !task.IsCanceled) {
+						Debug.Log("Target 1 file downloaded.");
+				}
+				targetRef2.GetFileAsync(targetPath2).ContinueWith(task2 => {
+					if (!task.IsFaulted && !task.IsCanceled) {
+							Debug.Log("Target 2 file downloaded.");
+					}
+					targetRef3.GetFileAsync(targetPath3).ContinueWith(task3 => {
+						if (!task.IsFaulted && !task.IsCanceled) {
+								Debug.Log("Target 3 file downloaded.");
+						}
+						targetRef4.GetFileAsync(targetPath4).ContinueWith(task4 => {
+							if (!task.IsFaulted && !task.IsCanceled) {
+									Debug.Log("Target 4 file downloaded.");
+							}
+							targetRef5.GetFileAsync(targetPath5).ContinueWith(task5 => {
+								if (!task.IsFaulted && !task.IsCanceled) {
+										Debug.Log("Target 5 file downloaded.");
+								}
+								lm.LoadFile();
+							});
+						});
+					});
+				});
+			});
     }
 		});
 
-	
-			targetRef1.GetFileAsync(targetPath1).ContinueWith(task => {
-			if (!task.IsFaulted && !task.IsCanceled) {
-					Debug.Log("Target 1 file downloaded.");
-			}
-			});
-	
-			targetRef2.GetFileAsync(targetPath2).ContinueWith(task => {
-			if (!task.IsFaulted && !task.IsCanceled) {
-					Debug.Log("Target 2 file downloaded.");
-			}
-			});
-
-			targetRef3.GetFileAsync(targetPath3).ContinueWith(task => {
-			if (!task.IsFaulted && !task.IsCanceled) {
-					Debug.Log("Target 3 file downloaded.");
-			}
-			});
-	
-			targetRef4.GetFileAsync(targetPath4).ContinueWith(task => {
-			if (!task.IsFaulted && !task.IsCanceled) {
-					Debug.Log("Target 4 file downloaded.");
-			}
-			});
-	
-			targetRef5.GetFileAsync(targetPath5).ContinueWith(task => {
-			if (!task.IsFaulted && !task.IsCanceled) {
-					Debug.Log("Target 5 file downloaded.");
-			}
-			});
-
-		yield return new WaitForSeconds(5);
-		DeleteExperience(ceam.UiCode.text);
-		lm.LoadFile();
+		yield return null;
 	}
 
 
@@ -633,45 +626,39 @@ public class FirebaseStorageManager : MonoBehaviour {
 		Firebase.Storage.StorageReference targetRef4 = fbm.fbStorage.GetReference(expCode + "/" + "targetPhoto4.jpg");
 		Firebase.Storage.StorageReference targetRef5 = fbm.fbStorage.GetReference(expCode + "/" + "targetPhoto5.jpg");
 
+
 		saveFileRef.GetFileAsync(saveFilePath).ContinueWith(task => {
     if (!task.IsFaulted && !task.IsCanceled) {
-        Debug.Log("Save file downloaded.");
+			Debug.Log("Save file downloaded.");
+			targetRef1.GetFileAsync(targetPath1).ContinueWith(task1 => {
+				if (!task.IsFaulted && !task.IsCanceled) {
+						Debug.Log("Target 1 file downloaded.");
+				}
+				targetRef2.GetFileAsync(targetPath2).ContinueWith(task2 => {
+					if (!task.IsFaulted && !task.IsCanceled) {
+							Debug.Log("Target 2 file downloaded.");
+					}
+					targetRef3.GetFileAsync(targetPath3).ContinueWith(task3 => {
+						if (!task.IsFaulted && !task.IsCanceled) {
+								Debug.Log("Target 3 file downloaded.");
+						}
+						targetRef4.GetFileAsync(targetPath4).ContinueWith(task4 => {
+							if (!task.IsFaulted && !task.IsCanceled) {
+									Debug.Log("Target 4 file downloaded.");
+							}
+							targetRef5.GetFileAsync(targetPath5).ContinueWith(task5 => {
+								if (!task.IsFaulted && !task.IsCanceled) {
+										Debug.Log("Target 5 file downloaded.");
+								}
+								lm.LoadFile();
+							});
+						});
+					});
+				});
+			});
     }
 		});
-
-	
-			targetRef1.GetFileAsync(targetPath1).ContinueWith(task => {
-			if (!task.IsFaulted && !task.IsCanceled) {
-					Debug.Log("Target 1 file downloaded.");
-			}
-			});
-	
-			targetRef2.GetFileAsync(targetPath2).ContinueWith(task => {
-			if (!task.IsFaulted && !task.IsCanceled) {
-					Debug.Log("Target 2 file downloaded.");
-			}
-			});
-
-			targetRef3.GetFileAsync(targetPath3).ContinueWith(task => {
-			if (!task.IsFaulted && !task.IsCanceled) {
-					Debug.Log("Target 3 file downloaded.");
-			}
-			});
-	
-			targetRef4.GetFileAsync(targetPath4).ContinueWith(task => {
-			if (!task.IsFaulted && !task.IsCanceled) {
-					Debug.Log("Target 4 file downloaded.");
-			}
-			});
-	
-			targetRef5.GetFileAsync(targetPath5).ContinueWith(task => {
-			if (!task.IsFaulted && !task.IsCanceled) {
-					Debug.Log("Target 5 file downloaded.");
-			}
-			});
-
-		yield return new WaitForSeconds(5);
-		lm.LoadFile();
+		yield return null;
 		whichIndex = 0;
 	}
 
