@@ -1,0 +1,33 @@
+fileFormatVersion: 2
+guid: c66a0d6f61d174d2f9f9d35ad07a1b48
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Atlan
+  fontNames:
+  - Atlan
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: addadfa19d02c4a97bac64ff02d3e162, type: 3}
+  - {fileID: 12800000, guid: 008671c2bdd794998a0fe86246143a7f, type: 3}
+  - {fileID: 12800000, guid: 40b390f2882be4e04981d200a6401603, type: 3}
+  - {fileID: 12800000, guid: 9bb4e5d6d9bdf48f8ba65851888f1ebc, type: 3}
+  - {fileID: 12800000, guid: af7352083c3e54b869847749c79810d4, type: 3}
+  - {fileID: 12800000, guid: 66c5b9fbc86ce48a389c9aaef4ad7407, type: 3}
+  - {fileID: 12800000, guid: 7199984c122a84189ad014ac86dc974a, type: 3}
+  - {fileID: 12800000, guid: a178eb7c6b74a423688fc4e91d4a5684, type: 3}
+  - {fileID: 12800000, guid: 1161fe4daec0a4b50a70877e59ae0b1e, type: 3}
+  - {fileID: 12800000, guid: 58718f9e1f715438cb3c53ec3e026ebc, type: 3}
+  - {fileID: 12800000, guid: 810444ff7c06a41e6813d9abd091b15c, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

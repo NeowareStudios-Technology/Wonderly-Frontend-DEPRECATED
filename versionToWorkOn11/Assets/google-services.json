@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "528864229961",
+    "firebase_url": "https://aliceone-221018.firebaseio.com",
+    "project_id": "aliceone-221018",
+    "storage_bucket": "aliceone-221018.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:528864229961:android:ec8ecdafb71462a7",
+        "android_client_info": {
+          "package_name": "com.lwa.wonderly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "528864229961-isklckk3f092hr98aftqpspfnigo7kjs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTBuFi-syxMD5ozRNwoQbgGN7YJjRMEkc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

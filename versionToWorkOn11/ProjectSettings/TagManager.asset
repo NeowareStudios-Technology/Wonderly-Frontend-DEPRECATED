@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - videoPlayer
+  - target1
+  - target2
+  - target3
+  - target4
+  - target5
+  - importedModel1
+  - importedModel2
+  - importedModel3
+  - importedModel4
+  - importedModel5
+  - videoPlayer1
+  - videoPlayer2
+  - videoPlayer3
+  - videoPlayer4
+  - videoPlayer5
+  - playerHolder
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - PostProcessing
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0

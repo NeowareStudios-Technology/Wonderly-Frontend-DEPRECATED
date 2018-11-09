@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 58718f9e1f715438cb3c53ec3e026ebc
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Atlan
+  fontNames:
+  - Atlan
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 008671c2bdd794998a0fe86246143a7f, type: 3}
+  - {fileID: 12800000, guid: 40b390f2882be4e04981d200a6401603, type: 3}
+  - {fileID: 12800000, guid: 1161fe4daec0a4b50a70877e59ae0b1e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
