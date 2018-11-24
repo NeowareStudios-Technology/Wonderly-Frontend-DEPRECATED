@@ -42,5 +42,7 @@
 	<true/>
 	<key>NSHumanReadableCopyright</key>
 	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string></string>
 </dict>
 </plist>
